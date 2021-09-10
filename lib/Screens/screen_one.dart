@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:interface_app/Screens/screen_two.dart';
 import 'package:interface_app/Widgets/reusable_cards.dart';
 import 'package:interface_app/Widgets/round_icon_button.dart';
 
@@ -75,7 +76,6 @@ class ScreenOne extends StatelessWidget {
                     "Create your life",
                     style: TextStyle(
                       fontSize: 35,
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   )),
@@ -86,9 +86,7 @@ class ScreenOne extends StatelessWidget {
                           TextSpan(
                             text: 'goal for long ',
                             style: TextStyle(
-                                fontSize: 35,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                                fontSize: 35, fontWeight: FontWeight.bold),
                           ),
                           TextSpan(
                             text: 'term',
@@ -114,7 +112,6 @@ class ScreenOne extends StatelessWidget {
                           Text(
                             '34 Goals',
                             style: (TextStyle(
-                              color: Colors.white,
                               fontSize: 24,
                             )),
                           ),
@@ -127,7 +124,10 @@ class ScreenOne extends StatelessWidget {
                       ),
                       TextButtonCard(
                         onPress: () {
-                          print('Add goal button was pressed');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ScreenTwo()));
                         },
                         text: 'Add Goals',
                         textColor: Colors.white,
@@ -174,12 +174,12 @@ class ScreenOne extends StatelessWidget {
                   Text(
                     "Ongoing Goals",
                     textAlign: TextAlign.start,
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(fontSize: 24),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  BigCard(
+                  BigCardWithIcon(
                       iconData: Icons.account_balance_wallet_outlined,
                       textTitle: 'Save \$50,000',
                       textDetails:
@@ -187,7 +187,7 @@ class ScreenOne extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-                  BigCard(
+                  BigCardWithIcon(
                       iconData: Icons.wb_cloudy_outlined,
                       textTitle: 'Dream House',
                       textDetails:

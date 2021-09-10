@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interface_app/constants.dart';
 
 class ReusableCard extends StatelessWidget {
   final Color colour;
@@ -61,11 +62,11 @@ class ReusableCard extends StatelessWidget {
   }
 }
 
-class BigCard extends StatelessWidget {
+class BigCardWithIcon extends StatelessWidget {
   final IconData iconData;
   final String textTitle, textDetails;
 
-  BigCard(
+  BigCardWithIcon(
       {required this.iconData,
       required this.textTitle,
       required this.textDetails});
@@ -100,17 +101,14 @@ class BigCard extends StatelessWidget {
               children: [
                 Text(
                   textTitle,
-                  style: TextStyle(fontSize: 25, color: Colors.white),
+                  style: kCardBigTextStyle,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
                   textDetails,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white70,
-                  ),
+                  style: kCardSmallTextStyle,
                 ),
               ],
             ),
@@ -180,6 +178,78 @@ class TextButtonCard extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(color: textColor, fontSize: 18.0),
+    );
+  }
+}
+
+class BigCardWithoutIcon extends StatelessWidget {
+  final String textTitle, textDetails;
+
+  BigCardWithoutIcon({required this.textTitle, required this.textDetails});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xff21252A), Color(0xff26292F)],
+          stops: [0.1, 0.3],
+        ),
+        // color: Color(0xff26292F),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            textTitle,
+            style: kCardSmallTextStyle,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            textDetails,
+            style: kCardBigTextStyle.copyWith(
+                fontWeight: FontWeight.w300, fontSize: 23),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  final Function onPress;
+  final String title;
+
+  BottomButton({required this.onPress, required this.title});
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onPress(),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(40),
+            ),
+            color: Colors.lightBlue),
+        height: 70.0,
+        width: double.infinity,
+        //margin: EdgeInsets.only(top: 10.0),
+        //padding: EdgeInsets.only(bottom: 10),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+          ),
+        ),
+      ),
     );
   }
 }
